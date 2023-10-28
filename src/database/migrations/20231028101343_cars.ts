@@ -6,7 +6,6 @@ export async function up(knex: Knex): Promise<void> {
         table.uuid("id").primary().defaultTo(knex.raw("uuid_generate_v4()"));
         table.string("plate", 16);
         table.string("name", 256).notNullable();
-        table.string("image", 256).notNullable();
         table.integer("rent_per_day").notNullable();
         table.integer("capacity");
         table.string("description", 1024);
@@ -16,7 +15,7 @@ export async function up(knex: Knex): Promise<void> {
         table.string("type", 16);
         table.integer("year");
         table.string("size_type", 16).notNullable();
-        table.timestamps();
+        table.timestamps(true, true);
     });
 }
 

@@ -12,7 +12,7 @@ export async function up(knex: Knex): Promise<void> {
         table.dateTime("finish_rent", { useTz: false }).notNullable().defaultTo(knex.fn.now());
         table.integer("price").notNullable();
         table.string("status", 16).notNullable().defaultTo("OK");
-        table.timestamps();
+        table.timestamps(true, true);
     });
 }
 
