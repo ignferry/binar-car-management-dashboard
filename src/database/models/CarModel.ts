@@ -16,6 +16,10 @@ export class CarModel extends Model {
     size_type!: string;
     created_at!: Date;
     updated_at!: Date;
+
+    static get tableName() {
+        return "cars";
+    }
 }
 
-export type Cars = ModelObject<CarModel>;
+export type Car = ModelObject<CarModel>;

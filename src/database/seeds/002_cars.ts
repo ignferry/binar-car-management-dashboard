@@ -16,7 +16,7 @@ export async function seed(knex: Knex): Promise<void> {
             transmission: "Automatic",
             type: "Minivan",
             year: 2015,
-            size_type: "Small"
+            size_type: "small"
         },
         {
             id: "8d510508-4c4a-4add-a5a6-6af75b5918f2",
@@ -28,7 +28,7 @@ export async function seed(knex: Knex): Promise<void> {
             transmission: "Automatic",
             type: "Sedan",
             year: 2020,
-            size_type: "Medium"
+            size_type: "medium"
         },
         {
             id: "f94f0eee-eca9-4985-bd92-26e00749c035",
@@ -40,7 +40,7 @@ export async function seed(knex: Knex): Promise<void> {
             transmission: "Automatic",
             type: "Sedan",
             year: 2022,
-            size_type: "Medium"
+            size_type: "medium"
         },
         {
             id: "440a8d01-90dc-4ee3-bf06-d0bcbcbfad1d",
@@ -52,7 +52,7 @@ export async function seed(knex: Knex): Promise<void> {
             transmission: "Automatic",
             type: "Hatchback",
             year: 2020,
-            size_type: "Large"
+            size_type: "large"
         },
         {
             id: "24105b02-6a95-4a0c-bdc8-fa4b4cb7857b",
@@ -64,7 +64,7 @@ export async function seed(knex: Knex): Promise<void> {
             transmission: "Automatic",
             type: "Minivan",
             year: 2021,
-            size_type: "Large"
+            size_type: "large"
         },
     ]);
 }

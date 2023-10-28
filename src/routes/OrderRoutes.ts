@@ -1,7 +1,10 @@
 import { Router } from "express";
+import { Routes } from "./Routes";
+import { OrderController } from "@controllers/OrderController";
 
-export default class OrderRoutes {
+export default class OrderRoutes implements Routes {
     private path = "/orders";
+    private controller = new OrderController();
     public router: Router;
 
     constructor() {
@@ -11,6 +14,6 @@ export default class OrderRoutes {
     }
 
     private initializeRoutes() {
-        this.router.get(`${this.path}`);
+        this.router.get(`${this.path}`, this.controller.getOrders);
     }
 }

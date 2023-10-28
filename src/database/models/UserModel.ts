@@ -7,6 +7,10 @@ export class UserModel extends Model {
     is_admin!: boolean;
     created_at!: Date;
     updated_at!: Date;
+
+    static get tableName() {
+        return "users";
+    }
 }
 
-export type Users = ModelObject<UserModel>;
+export type User = ModelObject<UserModel>;

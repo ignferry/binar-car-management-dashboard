@@ -10,6 +10,10 @@ export class OrderModel extends Model {
     status!: string;
     created_at!: Date;
     updated_at!: Date;
+
+    static get tableName() {
+        return "orders";
+    }
 }
 
-export type Users = ModelObject<OrderModel>;
+export type User = ModelObject<OrderModel>;
