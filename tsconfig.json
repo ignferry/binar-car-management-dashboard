@@ -33,7 +33,6 @@
       "@controllers/*": ["src/controllers/*"],
       "@services/*": ["src/services/*"],
       "@repositories/*": ["src/repositories/*"],
-      "@database/*": ["src/database/*"],
       "@models/*": ["src/database/models/*"],
       "@utils/*": ["utils/*"]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
