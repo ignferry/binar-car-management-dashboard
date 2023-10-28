@@ -5,7 +5,6 @@ export class CarModel extends Model {
     plate!: string;
     manufacture!: string;
     model!: string;
-    image!: string;
     rent_per_day!: number;
     capacity!: number;
     description!: string;
