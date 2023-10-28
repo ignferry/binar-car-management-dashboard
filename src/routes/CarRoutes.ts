@@ -16,6 +16,7 @@ export default class CarRoutes implements Routes {
     private initializeRoutes() {
         this.router.get(`${this.path}`, this.controller.getCars);
         this.router.get(`${this.path}/:id`, this.controller.getCarById);
+        this.router.get(`${this.path}/:id/image`, this.controller.getCarImageById);
         this.router.post(`${this.path}`, this.controller.createCar);
         this.router.put(`${this.path}/:id`, this.controller.updateCar);
         this.router.delete(`${this.path}/:id`, this.controller.deleteCar);

@@ -3,6 +3,8 @@ import logger from "@utils/logger";
 import { Routes } from "routes/Routes";
 import knex, { Knex } from "knex";
 import { Model } from "objection";
+import { exceptionHandler } from "middlewares/ExceptionHandler";
+import { reqEndLogger, reqStartLogger } from "middlewares/LoggingMiddleware";
 
 export class App {
     private app: express.Application;
@@ -13,7 +15,15 @@ export class App {
         this.port = parseInt(<string>process.env.SERVER_PORT, 10) || 3000;
         this.app = express();
 
+        // Logs start of request
+        this.app.use(reqStartLogger);
+
         this.initializeRoutes(routes);
+
+        // Handles request errors
+        this.app.use(exceptionHandler);
+        // Logs end of request
+        this.app.use(reqEndLogger);
     
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
