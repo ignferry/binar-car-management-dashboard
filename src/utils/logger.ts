@@ -17,6 +17,9 @@ const logger = pino(
                 return { pid: bindings.pid };
             }
         },
+        redact: {
+            paths: ["password", "*.password"]
+        },
         timestamp: pino.stdTimeFunctions.isoTime
     },
     transport

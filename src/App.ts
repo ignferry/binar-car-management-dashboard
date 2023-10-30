@@ -15,6 +15,9 @@ export class App {
         this.port = parseInt(<string>process.env.SERVER_PORT, 10) || 3000;
         this.app = express();
 
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: false }));
+
         // Logs start of request
         this.app.use(reqStartLogger);
 
@@ -24,9 +27,6 @@ export class App {
         this.app.use(exceptionHandler);
         // Logs end of request
         this.app.use(reqEndLogger);
-    
-        this.app.use(express.json());
-        this.app.use(express.urlencoded({ extended: false }));
 
         // Setup knex
         this.knexInstance = knex({
