@@ -5,6 +5,7 @@ export class CarModel extends Model {
     plate!: string;
     manufacture!: string;
     model!: string;
+    image!: string;
     rent_per_day!: number;
     capacity!: number;
     description!: string;
@@ -13,7 +14,8 @@ export class CarModel extends Model {
     available!: boolean;
     type!: string;
     year!: number;
-    size_type!: string;
+    options!: string[];
+    specs!: string[];
     created_at!: Date;
     updated_at!: Date;
 
