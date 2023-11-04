@@ -2,6 +2,7 @@ import logger from "@utils/logger";
 import { NextFunction, Request, Response } from "express";
 import { CheckViolationError, DBError, DataError, ForeignKeyViolationError, NotFoundError, NotNullViolationError, UniqueViolationError, ValidationError } from "objection";
 import { DatabaseError } from "pg";
+import NoFileReceivedException from "@exceptions/NoFileReceivedException";
 
 export const exceptionHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err) {
@@ -9,6 +10,7 @@ export const exceptionHandler = (err: Error, req: Request, res: Response, next: 
             || err instanceof DataError 
             || err instanceof CheckViolationError 
             || err instanceof NotNullViolationError
+            || err instanceof NoFileReceivedException
         ) {
             logger.warn(err, `${req.method} ${req.url} : Bad Request`)
             res.status(400).json(

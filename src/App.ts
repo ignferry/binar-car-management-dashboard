@@ -3,8 +3,9 @@ import logger from "@utils/logger";
 import { Routes } from "routes/Routes";
 import knex, { Knex } from "knex";
 import { Model } from "objection";
-import { exceptionHandler } from "middlewares/ExceptionHandler";
-import { reqEndLogger, reqStartLogger } from "middlewares/LoggingMiddleware";
+import { exceptionHandler } from "@middlewares/ExceptionHandler";
+import { reqEndLogger, reqStartLogger } from "@middlewares/LoggingMiddleware";
+import { join } from "path"
 
 export class App {
     private app: express.Application;
@@ -21,6 +22,10 @@ export class App {
         // Logs start of request
         this.app.use(reqStartLogger);
 
+        // Initialize routes
+        // Static routes
+        this.app.use("/cars/image", express.static(join(__dirname, "..", "storage", "cars")));
+        
         this.initializeRoutes(routes);
 
         // Handles request errors
