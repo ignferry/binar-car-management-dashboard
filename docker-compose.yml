@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:16.0-alpine
+    container_name: db-postgres
+    ports: 
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=bcr_management_dashboard
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./src/database/scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+      
+  backend-server:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: backend-server
+    ports: 
+      - "3000:3000"
+    command: npm start
+    environment:
+      - POSTGRES_DB=bcr_management_dashboard
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+    networks:
+      - backend
+    depends_on:
+      - database
+      
+networks:
+  backend:
+    driver: bridge
