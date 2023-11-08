@@ -12,6 +12,8 @@ interface IQuery {
     size_type: string;
     page: number;
     limit: number;
+    pickup_time: Date;
+    min_capacity: number;
 }
 
 export class CarController {
@@ -22,23 +24,37 @@ export class CarController {
             let limit = req.query.limit || 10;
             let page = Math.max(1, req.query.page) || 1;
             let offset = (page - 1) * limit;
+            let minimum_capacity = req.query.min_capacity || 1;
+            let maximum_capacity = 999;
 
             let cars;
-            if (!req.query.size_type){
-                cars = await this.carService.getCars(limit, offset);
+
+            // Size type query
+            if (req.query.size_type === "small") {
+                maximum_capacity = 2;
+            } else if (req.query.size_type === "medium") {
+                minimum_capacity = Math.max(3, minimum_capacity);
+                maximum_capacity = 4;
+            } else if (req.query.size_type === "large") {
+                minimum_capacity = Math.max(5, minimum_capacity);
+            }
+
+            // Pick up time query
+            console.log(req.query.pickup_time)
+            console.log(minimum_capacity)
+            if (req.query.pickup_time) {
+                cars = await this.carService.getCars(limit, offset, minimum_capacity, maximum_capacity, req.query.pickup_time)
             } else {
-                if (req.query.size_type === "small") {
-                    cars = await this.carService.getCars(limit, offset, 1, 2);
-                } else if (req.query.size_type === "medium") {
-                    cars = await this.carService.getCars(limit, offset, 3, 4);
-                } else if (req.query.size_type === "large") {
-                    cars = await this.carService.getCars(limit, offset, 5, 999);
-                } else {
-                    cars = await this.carService.getCars(limit, offset);
-                }
+                cars = await this.carService.getCars(limit, offset, minimum_capacity, maximum_capacity)
             }
            
-            res.status(200).json(cars);
+            res.status(200).json(
+                {
+                    page: page,
+                    limit: limit,
+                    data: cars
+                }
+            );
             next();
         } catch(e) {
             next(e);

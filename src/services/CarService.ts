@@ -2,42 +2,20 @@ import { Car, CarModel } from "@models/CarModel";
 import crypto from "crypto";
 
 export class CarService {
-    public async getCars(limit: number, offset: number, minimum_capacity?: number, maximum_capacity?: number): Promise<CarModel[]> {
-        if (minimum_capacity && maximum_capacity) {
+    public async getCars(limit: number, offset: number, minimum_capacity: number, maximum_capacity: number, minimum_available_date?: Date): Promise<CarModel[]> {
+        if (minimum_available_date) {
             return await CarModel
                 .query()
-                .select(
-                    "id", 
-                    "image",
-                    "manufacture", 
-                    "model", 
-                    "type", 
-                    "rent_per_day", 
-                    "description", 
-                    "capacity", 
-                    "transmission", 
-                    "year", 
-                    "updated_at"
-                )
+                .select("*")
+                .where("available_at", "<=", minimum_available_date)
                 .whereBetween("capacity", [minimum_capacity, maximum_capacity])
                 .offset(offset)
                 .limit(limit);
         } else {
             return await CarModel
                 .query()
-                .select(
-                    "id", 
-                    "image",
-                    "manufacture", 
-                    "model", 
-                    "type", 
-                    "rent_per_day", 
-                    "description", 
-                    "capacity", 
-                    "transmission", 
-                    "year", 
-                    "updated_at"
-                )
+                .select("*")
+                .whereBetween("capacity", [minimum_capacity, maximum_capacity])
                 .offset(offset)
                 .limit(limit);
         } 
@@ -46,21 +24,7 @@ export class CarService {
     public async getCarById(id: string): Promise<CarModel> {
         return await CarModel
             .query()
-            .select(
-                "id", 
-                "image",
-                "manufacture", 
-                "model", 
-                "type", 
-                "rent_per_day", 
-                "description", 
-                "capacity", 
-                "transmission", 
-                "year", 
-                "options",
-                "specs",
-                "updated_at"
-            )
+            .select("*")
             .findById(id)
             .throwIfNotFound();
     }
@@ -71,12 +35,6 @@ export class CarService {
             .insert(car)
             .throwIfNotFound()
             .returning("*");
-    }
-
-    public async addCarImage(file: Express.Multer.File): Promise<String> {
-        const uuid = crypto.randomUUID();
-        
-        return uuid;
     }
 
     public async updateCar(id: string, car: Partial<Car>): Promise<CarModel> {
