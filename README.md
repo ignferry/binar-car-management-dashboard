@@ -1,6 +1,6 @@
-# Binar Car Management Dashboard
+# Binar Car Rental
 
-REST API used as the backend of Binar Car Management Dashboard.
+Binar Car Rental frontend and backend
 
 ## How to Run
 - Execute command `npm i` to install required libraries
@@ -19,22 +19,29 @@ REST API used as the backend of Binar Car Management Dashboard.
 
 ## Endpoints
 
-### Cars
-| No | URI                          | Method    | Description                              |
-| -- | ----------------             | --------- | ---------------------------------------- |
-| 1  | /cars                        | GET       | Retrieve cars                            |
-| 2  | /cars/:id                    | GET       | Retrieve car by id                       |
-| 2  | /cars/image/:filename        | GET       | Retrieve car image                       |
-| 3  | /cars                        | POST      | Create car                               |
-| 3  | /cars/image                  | POST      | Upload car image                         |
-| 4  | /cars/:id                    | PUT       | Update car                               |
-| 5  | /cars/:id                    | DELETE    | Delete car                               |
+### Frontend
+| No | URI              | Description                              |
+| -- | ---------------- | ---------------------------------------- |
+| 1  | /                | Landing page                             |
+| 2  | /cars            | Find car                                 |
+
+### Backend
+#### Cars
+| No | URI                                 | Method    | Description                              |
+| -- | ----------------------------------- | --------- | ---------------------------------------- |
+| 1  | /api/v1/cars                        | GET       | Retrieve cars                            |
+| 2  | /api/v1/cars/:id                    | GET       | Retrieve car by id                       |
+| 2  | /api/v1/cars/image/:filename        | GET       | Retrieve car image                       |
+| 3  | /api/v1/cars                        | POST      | Create car                               |
+| 3  | /cars/image                         | POST      | Upload car image                         |
+| 4  | /api/v1/cars/:id                    | PUT       | Update car                               |
+| 5  | /api/v1/cars/:id                    | DELETE    | Delete car                               |
 
 
-### Orders
-| No | URI              | Method    | Description                              |
-| -- | ---------------- | --------- | ---------------------------------------- |
-| 1  | /orders          | GET       | Retrieve orders                          |
+#### Orders
+| No | URI                     | Method    | Description                              |
+| -- | ----------------------- | --------- | ---------------------------------------- |
+| 1  | /api/v1/orders          | GET       | Retrieve orders                          |
 
 
 ## Documentation
