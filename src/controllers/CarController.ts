@@ -48,8 +48,8 @@ export class CarController {
            
             res.status(200).json(
                 {
-                    page: page,
-                    limit: limit,
+                    page: Number(page),
+                    limit: Number(limit),
                     data: cars
                 }
             );
