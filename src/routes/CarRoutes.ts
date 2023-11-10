@@ -4,7 +4,7 @@ import { Routes } from "./Routes";
 import { carImageUpload } from "@middlewares/ImageUploadMiddleware";
 
 export default class CarRoutes implements Routes {
-    private path = "/cars";
+    private path = "/api/v1/cars";
     private controller = new CarController();
     public router: Router;
 

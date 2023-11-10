@@ -18,6 +18,7 @@ export class App {
 
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
+        this.app.set("view engine", "ejs");
 
         // Logs start of request
         this.app.use(reqStartLogger);
@@ -25,6 +26,7 @@ export class App {
         // Initialize routes
         // Static routes
         this.app.use("/cars/image", express.static(join(__dirname, "..", "storage", "cars")));
+        this.app.use("/", express.static(join(__dirname, "..", "public")));
         
         this.initializeRoutes(routes);
 

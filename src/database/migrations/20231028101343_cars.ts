@@ -12,9 +12,9 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("capacity").notNullable();
         table.string("description", 512).notNullable();
         table.dateTime("available_at", { useTz: false }).notNullable().defaultTo(knex.fn.now());
-        table.string("transmission", 16).notNullable();
+        table.string("transmission", 64).notNullable();
         table.boolean("available").defaultTo(true);
-        table.string("type", 16).notNullable();
+        table.string("type", 64).notNullable();
         table.integer("year").notNullable();
         table.specificType("options", "VARCHAR(256)[]");
         table.specificType("specs", "VARCHAR(256)[]");

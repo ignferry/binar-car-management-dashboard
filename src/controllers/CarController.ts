@@ -40,8 +40,6 @@ export class CarController {
             }
 
             // Pick up time query
-            console.log(req.query.pickup_time)
-            console.log(minimum_capacity)
             if (req.query.pickup_time) {
                 cars = await this.carService.getCars(limit, offset, minimum_capacity, maximum_capacity, req.query.pickup_time)
             } else {

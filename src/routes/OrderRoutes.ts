@@ -3,7 +3,7 @@ import { Routes } from "./Routes";
 import { OrderController } from "@controllers/OrderController";
 
 export default class OrderRoutes implements Routes {
-    private path = "/orders";
+    private path = "/api/v1/orders";
     private controller = new OrderController();
     public router: Router;
 
