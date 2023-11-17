@@ -1,61 +1,32 @@
 import { Car, CarModel } from "@models/CarModel";
-import crypto from "crypto";
+import { CarRepository } from "@repositories/CarRepository";
 
 export class CarService {
-    public async getCars(limit: number, offset: number, minimum_capacity: number, maximum_capacity: number, minimum_available_date?: Date): Promise<CarModel[]> {
-        if (minimum_available_date) {
-            return await CarModel
-                .query()
-                .select("*")
-                .where("available_at", "<=", minimum_available_date)
-                .whereBetween("capacity", [minimum_capacity, maximum_capacity])
-                .offset(offset)
-                .limit(limit);
-        } else {
-            return await CarModel
-                .query()
-                .select("*")
-                .whereBetween("capacity", [minimum_capacity, maximum_capacity])
-                .offset(offset)
-                .limit(limit);
-        } 
+    private carRepository = new CarRepository();
+
+    public async getCars(limit: number, page: number, minimum_capacity: number, maximum_capacity: number, minimum_available_date?: Date): Promise<CarModel[]> {
+        return await this.carRepository.getCars(
+            limit,
+            page,
+            minimum_capacity,
+            maximum_capacity,
+            minimum_available_date
+        );
     }
 
     public async getCarById(id: string): Promise<CarModel> {
-        return await CarModel
-            .query()
-            .select("*")
-            .findById(id)
-            .throwIfNotFound();
+        return await this.carRepository.getCarById(id);
     }
 
     public async createCar(car: Partial<Car>): Promise<CarModel> {
-        return await CarModel
-            .query()
-            .insert(car)
-            .throwIfNotFound()
-            .returning("*");
+        return await this.carRepository.createCar(car);
     }
 
     public async updateCar(id: string, car: Partial<Car>): Promise<CarModel> {
-        const carArr = await CarModel
-            .query()
-            .where({ id: id })
-            .patch(car)
-            .throwIfNotFound()
-            .returning("*");
-
-        return carArr[0];
+        return await this.carRepository.updateCar(id, car);
     }
 
     public async deleteCar(id: string): Promise<CarModel> {
-        const carArr = await CarModel
-            .query()
-            .where({ id: id })
-            .del()
-            .throwIfNotFound()
-            .returning("*");
-
-        return carArr[0];
+        return await this.carRepository.deleteCar(id);
     }
 }

@@ -1,7 +1,10 @@
 import { OrderModel } from "@models/OrderModel";
+import { OrderRepository } from "@repositories/OrderRepository";
 
 export class OrderService {
+    private orderRepository = new OrderRepository();
+
     public async getOrders(): Promise<OrderModel[]> {
-        return await OrderModel.query();
+        return await this.orderRepository.getOrders();
     }
 }
