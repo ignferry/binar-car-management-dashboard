@@ -16,4 +16,4 @@ export class OrderModel extends Model {
     }
 }
 
-export type User = ModelObject<OrderModel>;
+export type Order = ModelObject<OrderModel>;
