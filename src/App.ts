@@ -5,7 +5,9 @@ import knex, { Knex } from "knex";
 import { Model } from "objection";
 import { exceptionHandler } from "@middlewares/ExceptionHandler";
 import { reqEndLogger, reqStartLogger } from "@middlewares/LoggingMiddleware";
-import { join } from "path"
+import { join } from "path";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "generateDocs";
 
 export class App {
     private app: express.Application;
@@ -22,12 +24,20 @@ export class App {
 
         // Logs start of request
         this.app.use(reqStartLogger);
-
+        
         // Initialize routes
+        // Documentation route
+        this.app.use(
+            "/docs",
+            swaggerUi.serve,
+            swaggerUi.setup(swaggerSpec)
+        );
+
         // Static routes
         this.app.use("/cars/image", express.static(join(__dirname, "..", "storage", "cars")));
         this.app.use("/", express.static(join(__dirname, "..", "public")));
         
+        // Main routes
         this.initializeRoutes(routes);
 
         // Handles request errors

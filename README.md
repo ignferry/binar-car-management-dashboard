@@ -43,6 +43,7 @@ Binar Car Rental frontend and backend
 | -- | ----------------------- | --------- | ---------------------------------------- |
 | 1  | /api/v1/orders          | GET       | Retrieve orders                          |
 
-
-## Documentation
-Documentation (sample request and response) can be accessed [here](https://documenter.getpostman.com/view/21912047/2s9YXe8jVC)
+#### Dos
+| No | URI                     | Description                              |
+| -- | ----------------------- | ---------------------------------------- |
+| 1  | /docs                   | Swagger docs                             |
