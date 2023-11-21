@@ -7,7 +7,7 @@ import { exceptionHandler } from "@middlewares/ExceptionHandler";
 import { reqEndLogger, reqStartLogger } from "@middlewares/LoggingMiddleware";
 import { join } from "path";
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "generateDocs";
+import { swaggerSpec } from "@utils/GenerateDocs";
 
 export class App {
     private app: express.Application;

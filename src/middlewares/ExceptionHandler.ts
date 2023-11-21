@@ -12,6 +12,20 @@ export const exceptionHandler = (err: Error, req: Request, res: Response, next: 
             || err instanceof NotNullViolationError
             || err instanceof NoFileReceivedException
         ) {
+            /**
+             * @openapi
+             * components:
+             *      schemas:
+             *          BadRequestError:
+             *              type: object
+             *              properties:
+             *                  success:
+             *                      type: boolean
+             *                      example: false
+             *                  message:
+             *                      type: string
+             *                      example: 'Bad Request'
+             */
             logger.warn(err, `${req.method} ${req.url} : Bad Request`)
             res.status(400).json(
                 {
@@ -20,29 +34,54 @@ export const exceptionHandler = (err: Error, req: Request, res: Response, next: 
                 }
             );
         } else if (err instanceof NotFoundError) {
-            logger.warn(err, `${req.method} ${req.url} : Not Found`)
-            res.status(404).json(
-                {
-                    success: false,
-                    message: "Not Found"
-                }
-            );
+            /**
+             * @openapi
+             * components:
+             *      schemas:
+             *          NotFoundError:
+             *              type: object
+             *              properties:
+             *                  success:
+             *                      type: boolean
+             *                      example: false
+             *                  message:
+             *                      type: string
+             *                      example: 'Not Found'
+             */
+            logger.warn(err, `${req.method} ${req.url} : Not Found`);
+            res.status(404).json({
+                success: false,
+                message: "Not Found",
+            });
         } else if (err instanceof UniqueViolationError || err instanceof ForeignKeyViolationError) {
-            logger.warn(err, `${req.method} ${req.url} : Constraint Violation Error`)
-            res.status(409).json(
-                {
-                    success: false,
-                    message: "Constraint Violation Error"
-                }
+            /**
+             * @openapi
+             * components:
+             *      schemas:
+             *          ConstraintViolationError:
+             *              type: object
+             *              properties:
+             *                  success:
+             *                      type: boolean
+             *                      example: false
+             *                  message:
+             *                      type: string
+             *                      example: 'Constraint Violation Error'
+             */
+            logger.warn(
+                err,
+                `${req.method} ${req.url} : Constraint Violation Error`
             );
+            res.status(409).json({
+                success: false,
+                message: "Constraint Violation Error",
+            });
         } else if (err instanceof DBError || err instanceof DatabaseError) {
-            logger.error(err, `${req.method} ${req.url} : Database Error`)
-            res.status(500).json(
-                {
-                    success: false,
-                    message: "Database Error"
-                }
-            );
+            logger.error(err, `${req.method} ${req.url} : Database Error`);
+            res.status(500).json({
+                success: false,
+                message: "Database Error",
+            });
         } else {
             logger.error(err, `${req.method} ${req.url} : System Error`)
             res.status(500).json(
