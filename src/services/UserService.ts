@@ -16,6 +16,10 @@ export class UserService {
         }
     }
 
+    public async register(email: string, password: string): Promise<void> {
+        await this.UserRepository.addUser(email, password);
+    }
+
     public async login(email: string, password: string): Promise<string> {
         const user = await this.UserRepository.getUserByEmail(email);
 

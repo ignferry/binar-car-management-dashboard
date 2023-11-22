@@ -28,7 +28,6 @@ export class CarRepository {
         return await CarModel
             .query()
             .insert(car)
-            .throwIfNotFound()
             .returning("*");
     }
 
