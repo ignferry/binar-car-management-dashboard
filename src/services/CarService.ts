@@ -18,15 +18,15 @@ export class CarService {
         return await this.carRepository.getCarById(id);
     }
 
-    public async createCar(car: Partial<Car>): Promise<CarModel> {
-        return await this.carRepository.createCar(car);
+    public async createCar(car: Partial<Car>, user_id: string): Promise<CarModel> {
+        return await this.carRepository.createCar(car, user_id);
     }
 
-    public async updateCar(id: string, car: Partial<Car>): Promise<CarModel> {
-        return await this.carRepository.updateCar(id, car);
+    public async updateCar(id: string, car: Partial<Car>, user_id: string): Promise<CarModel> {
+        return await this.carRepository.updateCar(id, car, user_id);
     }
 
-    public async deleteCar(id: string): Promise<CarModel> {
-        return await this.carRepository.deleteCar(id);
+    public async deleteCar(id: string, user_id: string): Promise<CarModel> {
+        return await this.carRepository.deleteCar(id, user_id);
     }
 }

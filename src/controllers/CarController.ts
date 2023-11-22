@@ -81,7 +81,7 @@ export class CarController {
 
     public createCar = async (req: Request<{}, {}, Partial<Car>>, res: Response, next: NextFunction) => {
         try {
-            const car = await this.carService.createCar(req.body);
+            const car = await this.carService.createCar(req.body, req.user.id);
             res.status(201).json(car);
             next();
         } catch (e) {
@@ -107,7 +107,7 @@ export class CarController {
 
     public updateCar = async (req: Request<IParams, {}, Partial<Car>>, res: Response, next: NextFunction) => {
         try {
-            const car = await this.carService.updateCar(req.params.id, req.body);
+            const car = await this.carService.updateCar(req.params.id, req.body, req.user.id);
             res.status(200).json(car);
             next();
         } catch (e) {
@@ -117,7 +117,7 @@ export class CarController {
 
     public deleteCar = async (req: Request<IParams>, res: Response, next: NextFunction) => {
         try {
-            const car = await this.carService.deleteCar(req.params.id);
+            const car = await this.carService.deleteCar(req.params.id, req.user.id);
             res.status(200).json(car);
             next();
         } catch (e) {

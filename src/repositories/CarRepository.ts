@@ -6,6 +6,11 @@ export class CarRepository {
             .query()
             .select("*")
             .whereBetween("capacity", [minimum_capacity, maximum_capacity])
+            .where(
+                {
+                    deleted_at: null
+                }
+            )
             .page(page, limit);
 
         
@@ -21,29 +26,54 @@ export class CarRepository {
             .query()
             .select("*")
             .findById(id)
+            .where(
+                {
+                    deleted_at: null
+                }
+            )
             .throwIfNotFound();
     }
 
-    public async createCar(car: Partial<Car>): Promise<CarModel> {
+    public async createCar(car: Partial<Car>, user_id: string): Promise<CarModel> {
         return await CarModel
             .query()
-            .insert(car)
+            .insert({
+                ...car,
+                ...{
+                    creator_id: user_id
+                }
+            })
             .returning("*");
     }
 
-    public async updateCar(id: string, car: Partial<Car>): Promise<CarModel> {
+    public async updateCar(id: string, car: Partial<Car>, user_id: string): Promise<CarModel> {
         return await CarModel
             .query()
-            .patchAndFetchById(id, car)
+            .patchAndFetchById(id, {
+                ...car,
+                ...{
+                    last_updater_id: user_id
+                }
+            })
+            .where(
+                {
+                    deleted_at: null
+                }
+            )
             .throwIfNotFound()
             .returning("*");
     }
 
-    public async deleteCar(id: string): Promise<CarModel> {
-        return (await CarModel
+    public async deleteCar(id: string, user_id: string): Promise<CarModel> {
+        return await CarModel
             .query()
-            .deleteById(id)
+            .patchAndFetchById(id, {deleted_at: new Date(), deleter_id: user_id})
+            .where(
+                {
+                    deleted_at: null
+                }
+            )
             .throwIfNotFound()
-            .returning("*"))[0];
+            .returning("*");   
     }
 }

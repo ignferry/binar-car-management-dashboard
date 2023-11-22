@@ -20,11 +20,11 @@ export async function up(knex: Knex): Promise<void> {
         table.specificType("options", "VARCHAR(256)[]");
         table.specificType("specs", "VARCHAR(256)[]");
         table.uuid("creator_id").notNullable();
-        table.foreign("creator_id").references("users.id");
+        table.foreign("creator_id").references("users.id").onDelete("SET NULL");
         table.uuid("last_updater_id");
-        table.foreign("last_updater_id").references("users.id");
+        table.foreign("last_updater_id").references("users.id").onDelete("SET NULL");
         table.uuid("deleter_id");
-        table.foreign("deleter_id").references("users.id");
+        table.foreign("deleter_id").references("users.id").onDelete("SET NULL");
         table.timestamps(true, true);
         table.dateTime("deleted_at");
     });
