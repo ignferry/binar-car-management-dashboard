@@ -138,6 +138,20 @@ export default class CarRoutes implements Routes {
        *                      schema:
        *                          type: object
        *                          $ref: '#/components/schemas/BadRequestError'
+       *          '401':
+       *              description: No JWT Token Provided
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/NoTokenError'
+       *          '403':
+       *              description: Invalid JWT Token
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/InvalidTokenError'
        *          '409':
        *              description: Request body value violates a constraint
        *              content:
@@ -190,6 +204,20 @@ export default class CarRoutes implements Routes {
        *                      schema:
        *                          type: object
        *                          $ref: '#/components/schemas/BadRequestError'
+       *          '401':
+       *              description: No JWT Token Provided
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/NoTokenError'
+       *          '403':
+       *              description: Invalid JWT Token
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/InvalidTokenError'
        */
       this.router.post(
         `${this.path}/image`,
@@ -237,6 +265,20 @@ export default class CarRoutes implements Routes {
        *                      schema:
        *                          type: object
        *                          $ref: '#/components/schemas/BadRequestError'
+       *          '401':
+       *              description: No JWT Token Provided
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/NoTokenError'
+       *          '403':
+       *              description: Invalid JWT Token
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/InvalidTokenError'
        *          '404':
        *              description: No car with given ID is found
        *              content:
@@ -284,6 +326,20 @@ export default class CarRoutes implements Routes {
        *                      schema:
        *                          type: object
        *                          $ref: '#/components/schemas/Car'
+       *          '401':
+       *              description: No JWT Token Provided
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/NoTokenError'
+       *          '403':
+       *              description: Invalid JWT Token
+       *              content:
+       *                  application/json:
+       *                      schema:
+       *                          type: object
+       *                          $ref: '#/components/schemas/InvalidTokenError'
        *          '404':
        *              description: No car with given ID is found
        *              content:

@@ -45,10 +45,17 @@ export default class AuthRoutes implements Routes {
          *                          properties:
          *                              token:
          *                                  type: string
+         *          '401':
+         *              description: Wrong authentication credentials
+         *              content:
+         *                  application/json:
+         *                      schema:
+         *                          type: object
+         *                          $ref: '#/components/schemas/WrongAuthCredentialsError'
          */
         this.router.post(`${this.path}/login`, this.controller.login);
 
-                /**
+        /**
          * @openapi
          * components:
          *      securitySchemes:

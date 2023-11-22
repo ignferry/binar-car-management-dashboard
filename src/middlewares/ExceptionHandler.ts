@@ -3,6 +3,9 @@ import { NextFunction, Request, Response } from "express";
 import { CheckViolationError, DBError, DataError, ForeignKeyViolationError, NotFoundError, NotNullViolationError, UniqueViolationError, ValidationError } from "objection";
 import { DatabaseError } from "pg";
 import NoFileReceivedException from "@exceptions/NoFileReceivedException";
+import WrongAuthCredentialsException from "@exceptions/WrongAuthCredentialsException";
+import NoTokenException from "@exceptions/NoTokenException";
+import InvalidTokenException from "@exceptions/InvalidTokenException";
 
 export const exceptionHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err) {
@@ -26,13 +29,64 @@ export const exceptionHandler = (err: Error, req: Request, res: Response, next: 
              *                      type: string
              *                      example: 'Bad Request'
              */
-            logger.warn(err, `${req.method} ${req.url} : Bad Request`)
+            logger.info(err, `${req.method} ${req.url} : Bad Request`)
             res.status(400).json(
                 {
                     success: false,
                     message: "Bad Request"
                 }
             );
+        } else if (err instanceof WrongAuthCredentialsException || err instanceof NoTokenException) {
+            /**
+             * @openapi
+             * components:
+             *      schemas:
+             *          WrongAuthCredentialsError:  
+             *              type: object
+             *              properties:
+             *                  success:
+             *                      type: boolean
+             *                      example: false
+             *                  message:
+             *                      type: string
+             *                      example: 'Wrong Authentication Credentials'
+             *          NoTokenError:
+             *              type: object
+             *              properties:
+             *                  success:
+             *                      type: boolean
+             *                      example: false
+             *                  message:
+             *                      type: string
+             *                      example: 'No JWT Token Provided'
+             */
+            logger.info(err, `${req.method} ${req.url} : Unauthorized`);
+            res.status(401).json(
+                {
+                    success: false,
+                    message: err.message
+                }
+            );
+        } else if (err instanceof InvalidTokenException) {
+            /**
+             * @openapi
+             * components:
+             *      schemas:
+             *          InvalidTokenError:
+             *              type: object
+             *              properties:
+             *                  success:
+             *                      type: boolean
+             *                      example: false
+             *                  message:
+             *                      type: string
+             *                      example: 'Invalid JWT Token'
+             */
+            logger.info(err, `${req.method} ${req.url} : Forbidden`);
+            res.status(403).json({
+                success: false,
+                message: err.message,
+            });
         } else if (err instanceof NotFoundError) {
             /**
              * @openapi

@@ -2,7 +2,7 @@ import ValidationException from "@exceptions/ValidationException";
 import { NextFunction, Request, Response } from "express";
 import { UserService } from "services/UserService";
 
-interface ILoginBody {
+interface IAuthBody {
     email: string;
     password: string
 }
@@ -10,7 +10,11 @@ interface ILoginBody {
 export class UserController {
     private userService = new UserService();
 
-    public login = async (req: Request<{}, {}, ILoginBody>, res: Response, next: NextFunction) => {
+    public register = async (req: Request<{}, {}, IAuthBody>, res: Response, next: NextFunction) => {
+        
+    }
+
+    public login = async (req: Request<{}, {}, IAuthBody>, res: Response, next: NextFunction) => {
         try {
             if (!req.body.email || !req.body.password) {
                 throw new ValidationException("Email and Password Required")
