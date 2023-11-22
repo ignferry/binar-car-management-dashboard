@@ -14,26 +14,24 @@ export const authenticateToken = (req: Request<any>, res: Response, next: NextFu
     if (!token) {
         next(new NoTokenException());
         return;
-        return res.status(401).json(
-            {
-                message: "Invalid Token"
-            }
-        );
     }
 
     jwt.verify(
         token,
         JWT_PUBLIC_KEY,
-        (err) => {
+        (err, payload) => {
+            // Check if JWT token is valid
             if (err) {
                 next(new InvalidTokenException());
                 return;
-                return res.status(403).json(
-                    {
-                        message: "Forbidden"
-                    }
-                )
             }
+            try {
+                // Check if JWT payload follows standard format
+                req.user = payload as {id: string, email: string};
+            } catch {
+                next(new InvalidTokenException());
+            }
+            
             next();
         }
     );

@@ -34,7 +34,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Air conditioning w/in-cabin microfilter",
               "Body color folding remote-controlled pwr mirrors",
               "Dual-stage front airbags w/occupant classification system"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "9ff03bbc-b18c-4ba7-8f3a-4c4b5c2f6c77",
@@ -63,7 +65,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Dual chrome exhaust tips",
               "Locking glove box",
               "Pwr front vented disc/rear drum brakes"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "bf6b5c43-1377-4ae0-8908-310c64266f81",
@@ -97,7 +101,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Driver & front passenger advanced multistage airbags w/occupant sensors",
               "Silver accent IP trim finisher -inc: silver shifter finisher",
               "Fasten seat belt warning light/chime"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "5b67f1d7-92d4-41c7-8577-4435740aadf1",
@@ -131,7 +137,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Electronic throttle control system w/intelligence (ETCS-i)",
               "Pwr tilt/slide moonroof -inc: 1-touch open/close",
               "Acoustic glass windshield"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "23574b8f-3e89-4685-a348-67c1f7e5b3c4",
@@ -160,7 +168,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Front & rear passenger folding assist grips",
               "Electronic control braking (ECB)",
               "Black windshield molding"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "3eead6db-c536-406b-9bc5-85d4c6e38a76",
@@ -190,7 +200,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Leather-wrapped shift knob",
               "Enhanced accident response system unlocks the doors, shuts off the fuel pump and turns on interior lights after airbag deploys",
               "Compact spare tire"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "752685ce-dd39-40e5-9af5-93fdd36dea7e",
@@ -223,7 +235,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Torsion beam rear suspension w/stabilizer bar",
               "Impact-dissipating upper interior trim",
               "Dual front 2-stage airbags -inc: passenger occupant classification system w/twin-chamber airbag"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "d97e0af5-2728-4ce3-ba7f-9d83a0837db6",
@@ -253,7 +267,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Front door tinted glass",
               "Body color door handles",
               "Chrome bodyside molding"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "0d5de078-a5fc-456b-9487-47eb450a01c6",
@@ -285,7 +301,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Anti-lock 4-wheel performance disc brakes",
               "200mm front axle",
               "Dual front knee airbags"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "6dfa349e-631c-46c0-a037-5c73902ff738",
@@ -314,7 +332,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Front/rear stabilizer bars",
               "Electrochromic pwr folding heated mirrors w/memory -inc: puddle lamps, integrated turn signals, auto reverse tilt-down",
               "Multi-info display -inc: driving range, average MPG, current MPG, average speed, outside temp, elapsed time, maintenance & diagnostic messages"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "803593fb-b857-4a01-adc4-651538217a04",
@@ -347,7 +367,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Security alarm",
               "Dual bright exhaust tips",
               "Compact spare tire"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "e0a96736-a2d5-40ca-87de-64b59cac85d8",
@@ -383,7 +405,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Back-up camera",
               "Direct-type tire pressure monitor system",
               "All-position 3-point seat belts -inc: outboard pretensioners & force limiters, dual front pwr shoulder height adjusters, rear outboard emergency auto locking retractors, driver emergency locking retractor"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "e39f2965-57da-4d8f-afdb-74f6c54e69f0",
@@ -412,7 +436,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Battery saver",
               "Driver & front passenger map pockets",
               "Deluxe insulation group"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "c18a5545-2ce2-4330-aa3b-1bbcf6247519",
@@ -444,7 +470,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Rear body-color spoiler",
               "Reversible/waterproof cargo storage",
               "Front & rear side curtain airbags"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "72530cba-051d-49d8-822b-deaf2e5330ca",
@@ -479,7 +507,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Back-up camera",
               "Highline door trim panel",
               "Pwr front vented disc/rear drum brakes"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "79cc327b-2b0f-4042-acdf-78386b2f8ebd",
@@ -509,7 +539,9 @@ export async function seed(knex: Knex): Promise<void> {
               "1.8L DOHC 16-valve I4 engine -inc: engine cover",
               "Air conditioning w/in-cabin microfilter",
               "4-wheel ventilated pwr disc brakes -inc: brake override system"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "22c969a7-04ce-4efb-a479-7ab3bc094cb9",
@@ -542,7 +574,9 @@ export async function seed(knex: Knex): Promise<void> {
               "LATCH-ready child seat anchor system",
               "Passenger assist handles",
               "XM satellite radio receiver -inc: 90 day trial subscription"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "1bfda124-5175-4b90-bee7-d66affdbcc66",
@@ -575,7 +609,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Anti-lock brake system (ABS) -inc: electronic brake force distribution (EBD), brake assist",
               "Variable intermittent windshield wipers w/mist function",
               "Roof mounted antenna"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "08cbd537-497f-4305-b7b4-e7493c703a2c",
@@ -610,7 +646,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Battery saver",
               "First aid kit",
               "Immobilizer system"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "950575d6-958c-422e-a46b-c3ed2e1315ed",
@@ -641,7 +679,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Front/rear crumple zones",
               "Rear door child safety locks",
               "Child safety rear door locks"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "b89117fc-69e1-4366-ba21-9d6a0b2bfb04",
@@ -671,7 +711,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Dana 44/226mm rear axle",
               "Roof mounted antenna",
               "Fixed long mast antenna"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "fc1d3297-ab17-40a9-a79c-ca7307ed5faa",
@@ -706,7 +748,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Battery saver",
               "20\" x 9.0\" front & 20\" x 10.0\" rear aluminum wheels",
               "Cargo compartment lamp"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "432d9ed1-e330-4953-ac33-f51a60a5799b",
@@ -742,7 +786,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Front/rear aluminum multi-link double joint suspension w/coil springs",
               "Laminated side window glass",
               "Silver accent IP trim finisher -inc: silver shifter finisher"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "32e7e56f-1a00-455f-bf4b-dbd2c8c4daaf",
@@ -774,7 +820,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Rear bench seat -inc: (3) adjustable headrests",
               "Front/rear aluminum multi-link double joint suspension w/coil springs",
               "Reclining front bucket seats -inc: active head restraints, double-thickness foam in front seats"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           },
           {
             "id": "e76e884b-8f3e-4b90-a717-9239676d0191",
@@ -807,7 +855,9 @@ export async function seed(knex: Knex): Promise<void> {
               "Dual bright exhaust tips",
               "Remote fuel lid release",
               "Traveler/mini trip computer"
-            ]
+            ],
+            "creator_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
+            "last_updater_id": "0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d",
           }
     ]);
 }

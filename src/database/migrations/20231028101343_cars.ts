@@ -1,4 +1,5 @@
 import { Knex } from "knex";
+import { transaction } from "objection";
 
 
 export async function up(knex: Knex): Promise<void> {
@@ -18,7 +19,14 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("year").notNullable();
         table.specificType("options", "VARCHAR(256)[]");
         table.specificType("specs", "VARCHAR(256)[]");
+        table.uuid("creator_id").notNullable();
+        table.foreign("creator_id").references("users.id");
+        table.uuid("last_updater_id");
+        table.foreign("last_updater_id").references("users.id");
+        table.uuid("deleter_id");
+        table.foreign("deleter_id").references("users.id");
         table.timestamps(true, true);
+        table.dateTime("deleted_at");
     });
 }
 
