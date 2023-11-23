@@ -399,10 +399,22 @@ export default class CarRoutes implements Routes {
        *                      type: array
        *                      items:
        *                          type: string
+       *                  creator_id:
+       *                      type: string
+       *                      format: uuid
        *                  created_at:
        *                      type: string
        *                      format: date-time
+       *                  last_updater_id:
+       *                      type: string
+       *                      format: uuid
        *                  updated_at:
+       *                      type: string
+       *                      format: date-time
+       *                  deleter_id:
+       *                      type: string
+       *                      format: uuid
+       *                  deleted_at:
        *                      type: string
        *                      format: date-time
        */
