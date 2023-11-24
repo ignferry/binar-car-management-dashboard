@@ -365,58 +365,79 @@ export default class CarRoutes implements Routes {
        *                  id:
        *                      type: string
        *                      format: uuid
+       *                      example: '0d5de078-a5fc-456b-9487-47eb450a01c6'
        *                  plate:
        *                      type: string
+       *                      example: 'STL-7347'
        *                  manufacture:
        *                      type: string
+       *                      example: 'Buick'
        *                  model:
        *                      type: string
+       *                      example: 'LaCrosse'
        *                  image:
        *                      type: string
+       *                      example: 'car09.min.jpg'
        *                  rent_per_day:
        *                      type: integer
+       *                      example: 1000000
        *                  capacity:
        *                      type: integer
        *                      minimum: 1
+       *                      example: 6
        *                  description:
        *                      type: string
+       *                      example: 'Rear reading & courtesy lamps. Zone body construction -inc: front/rear crumple zones, hood deformation point.'
        *                  available_at:
        *                      type: string
        *                      format: date-time
+       *                      example: '2022-03-23T15:49:05.563Z'
        *                  transmission:
        *                      type: string
+       *                      example: 'Automatic'
        *                  available:
        *                      type: boolean
+       *                      example: false
        *                  type:
        *                      type: string
+       *                      example: 'Extended Cab Pickup'
        *                  year:
        *                      type: integer
+       *                      example: 2012
        *                  options:
        *                      type: array
        *                      items:
        *                          type: string
+       *                          example: 'CD (Multi Disc)'
        *                  specs:
        *                      type: array
        *                      items:
        *                          type: string
+       *                          example: 'Rear reading & courtesy lamps'
        *                  creator_id:
        *                      type: string
        *                      format: uuid
+       *                      example: '0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d'
        *                  created_at:
        *                      type: string
        *                      format: date-time
+       *                      example: '2023-11-24T12:49:47.216Z'
        *                  last_updater_id:
        *                      type: string
        *                      format: uuid
+       *                      example: '0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d'
        *                  updated_at:
        *                      type: string
        *                      format: date-time
+       *                      example: '2023-11-24T12:49:47.216Z'
        *                  deleter_id:
        *                      type: string
        *                      format: uuid
+       *                      example: '0f9a16f5-2d9a-4fa5-8bc2-9a00df22921d'
        *                  deleted_at:
        *                      type: string
        *                      format: date-time
+       *                      example: '2023-11-24T12:49:47.216Z'
        */
 
       /**
@@ -428,38 +449,52 @@ export default class CarRoutes implements Routes {
        *              properties:
        *                  plate:
        *                      type: string
+       *                      example: 'STL-7347'
        *                  manufacture:
        *                      type: string
+       *                      example: 'Buick'
        *                  model:
        *                      type: string
+       *                      example: 'LaCrosse'
        *                  image:
        *                      type: string
+       *                      example: 'car09.min.jpg'
        *                  rent_per_day:
        *                      type: integer
+       *                      example: 1000000
        *                  capacity:
        *                      type: integer
        *                      minimum: 1
+       *                      example: 6
        *                  description:
        *                      type: string
+       *                      example: 'Rear reading & courtesy lamps. Zone body construction -inc: front/rear crumple zones, hood deformation point.'
        *                  available_at:
        *                      type: string
        *                      format: date-time
+       *                      example: '2022-03-23T15:49:05.563Z'
        *                  transmission:
        *                      type: string
+       *                      example: 'Automatic'
        *                  available:
        *                      type: boolean
+       *                      example: false
        *                  type:
        *                      type: string
+       *                      example: 'Extended Cab Pickup'
        *                  year:
        *                      type: integer
+       *                      example: 2012
        *                  options:
        *                      type: array
        *                      items:
        *                          type: string
+       *                          example: 'CD (Multi Disc)'
        *                  specs:
        *                      type: array
        *                      items:
        *                          type: string
+       *                          example: 'Rear reading & courtesy lamps'
        */
     }
 }

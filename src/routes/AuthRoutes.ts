@@ -32,9 +32,11 @@ export default class AuthRoutes implements Routes {
          *                          email:
          *                              type: string
          *                              format: email
+         *                              example: 'admin2@gmail.com'
          *                          password:
          *                              type: string
          *                              format: password
+         *                              example: password
          *      responses:
          *          '200':
          *              description: Registration successful
@@ -81,9 +83,11 @@ export default class AuthRoutes implements Routes {
          *                          email:
          *                              type: string
          *                              format: email
+         *                              example: admin@gmail.com
          *                          password:
          *                              type: string
          *                              format: password
+         *                              example: password
          *      responses:
          *          '200':
          *              description: Create car success
