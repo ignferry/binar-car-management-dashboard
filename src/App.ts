@@ -8,6 +8,7 @@ import { reqEndLogger, reqStartLogger } from "@middlewares/LoggingMiddleware";
 import { join } from "path";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "@utils/GenerateDocs";
+import cors from "cors";
 
 export class App {
     private app: express.Application;
@@ -21,6 +22,7 @@ export class App {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
         this.app.set("view engine", "ejs");
+        this.app.use(cors())
 
         // Logs start of request
         this.app.use(reqStartLogger);
