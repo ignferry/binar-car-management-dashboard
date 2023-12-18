@@ -1,6 +1,6 @@
-import pino from 'pino';
+import pino, { type DestinationStream } from 'pino';
 
-const transport = pino.transport({
+const transport: DestinationStream = pino.transport({
   target: 'pino-pretty',
   options: {
     colorized: true,

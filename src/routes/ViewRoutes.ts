@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { Routes } from './Routes';
+import type { Routes } from './Routes';
 import { ViewController } from '@controllers/ViewController';
 
 export default class ViewRoutes implements Routes {
-  private path = '';
-  private controller = new ViewController();
+  private readonly path = '';
+  private readonly controller = new ViewController();
   public router: Router;
 
   constructor() {
@@ -13,7 +13,7 @@ export default class ViewRoutes implements Routes {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     this.router.get(`${this.path}`, this.controller.landingPage);
     this.router.get(`${this.path}/cars`, this.controller.searchCars);
   }

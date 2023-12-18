@@ -12,9 +12,10 @@ export const carImageUpload = multer({
     },
   }),
   fileFilter: (req, file, cb) => {
-    let ext = extname(file.originalname);
-    if (ext !== '.png' && ext != '.jpg' && ext != '.jpeg') {
-      return cb(new Error('Only images are allowed!'));
+    const ext = extname(file.originalname);
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
+      cb(new Error('Only images are allowed!'));
+      return
     }
     cb(null, true);
   },

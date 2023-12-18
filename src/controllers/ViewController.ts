@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { join } from 'path';
 
 export class ViewController {
-  public landingPage = (req: Request, res: Response, next: NextFunction) => {
+  public landingPage = (req: Request, res: Response, next: NextFunction): void => {
     try {
       res.render(join(__dirname, '..', 'views', 'landing_page'));
     } catch (e) {
@@ -10,7 +10,7 @@ export class ViewController {
     }
   };
 
-  public searchCars = (req: Request, res: Response, next: NextFunction) => {
+  public searchCars = (req: Request, res: Response, next: NextFunction): void => {
     try {
       res.render(join(__dirname, '..', 'views', 'cari_mobil'));
     } catch (e) {

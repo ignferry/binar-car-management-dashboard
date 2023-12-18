@@ -1,7 +1,7 @@
 import express from 'express';
 import logger from '@utils/logger';
-import { Routes } from 'routes/Routes';
-import knex, { Knex } from 'knex';
+import type { Routes } from 'routes/Routes';
+import knex, { type Knex } from 'knex';
 import { Model } from 'objection';
 import { exceptionHandler } from '@middlewares/ExceptionHandler';
 import { reqEndLogger, reqStartLogger } from '@middlewares/LoggingMiddleware';
@@ -11,12 +11,12 @@ import { swaggerSpec } from '@utils/GenerateDocs';
 import cors from 'cors';
 
 export class App {
-  private app: express.Application;
-  private knexInstance: Knex;
-  private port: number;
+  private readonly app: express.Application;
+  private readonly knexInstance: Knex;
+  private readonly port: number;
 
   constructor(routes: Routes[]) {
-    this.port = parseInt(<string>process.env.SERVER_PORT, 10) || 3000;
+    this.port = parseInt(!process.env.SERVER_POR as unknown as string, 10) || 3000;
     this.app = express();
 
     this.app.use(express.json());
@@ -54,7 +54,7 @@ export class App {
         user: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         host: process.env.POSTGRES_HOST,
-        port: parseInt(<string>process.env.POSTGRES_PORT, 10) || 5432,
+        port: parseInt(process.env.POSTGRES_PORT as unknown as string, 10) || 5432,
       },
       pool: {
         min: 2,
@@ -65,13 +65,13 @@ export class App {
     Model.knex(this.knexInstance);
   }
 
-  private initializeRoutes(routes: Routes[]) {
-    for (let route of routes) {
+  private initializeRoutes(routes: Routes[]): void {
+    for (const route of routes) {
       this.app.use('/', route.router);
     }
   }
 
-  public listen() {
+  public listen(): void {
     this.app.listen(this.port, () => {
       logger.info(`Server is running at port ${this.port}`);
     });

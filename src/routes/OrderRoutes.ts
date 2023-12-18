@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { Routes } from './Routes';
+import type { Routes } from './Routes';
 import { OrderController } from '@controllers/OrderController';
 import { authenticateToken } from '@middlewares/AuthMiddleware';
 
 export default class OrderRoutes implements Routes {
-  private path = '/api/v1/orders';
-  private controller = new OrderController();
+  private readonly path = '/api/v1/orders';
+  private readonly controller = new OrderController();
   public router: Router;
 
   constructor() {
@@ -14,7 +14,7 @@ export default class OrderRoutes implements Routes {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     /**
      * @openapi
      * /api/v1/orders:

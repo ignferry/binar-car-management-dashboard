@@ -5,3 +5,4 @@ export class OrderRepository {
     return await OrderModel.query();
   }
 }
+

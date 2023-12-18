@@ -5,7 +5,7 @@ export class UserRepository {
   public async addUser(email: string, password: string): Promise<void> {
     await UserModel.query()
       .insert({
-        email: email,
+        email,
         password: await bcrypt.hash(password, 10),
         is_admin: true,
       })
@@ -14,7 +14,7 @@ export class UserRepository {
 
   public async getUserByEmail(email: string): Promise<UserModel | undefined> {
     return await UserModel.query().findOne({
-      email: email,
+      email,
     });
   }
 }

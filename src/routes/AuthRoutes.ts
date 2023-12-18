@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { Routes } from './Routes';
+import type { Routes } from './Routes';
 import { UserController } from '@controllers/UserController';
 
 export default class AuthRoutes implements Routes {
-  private path = '/api/v1/auth';
-  private controller = new UserController();
+  private readonly path = '/api/v1/auth';
+  private readonly controller = new UserController();
   public router: Router;
 
   constructor() {
@@ -13,7 +13,7 @@ export default class AuthRoutes implements Routes {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     /**
      * @openapi
      * /api/v1/auth/register:

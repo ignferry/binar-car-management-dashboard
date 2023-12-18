@@ -1,5 +1,5 @@
 import logger from '@utils/logger';
-import { NextFunction, Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import {
   CheckViolationError,
   DBError,
@@ -21,7 +21,7 @@ export const exceptionHandler = (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {
+): void => {
   if (err) {
     if (
       err instanceof ValidationError ||

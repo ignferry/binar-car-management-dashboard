@@ -1,12 +1,12 @@
 import { CarController } from '@controllers/CarController';
 import { Router } from 'express';
-import { Routes } from './Routes';
+import type { Routes } from './Routes';
 import { carImageUpload } from '@middlewares/ImageUploadMiddleware';
 import { authenticateToken } from '@middlewares/AuthMiddleware';
 
 export default class CarRoutes implements Routes {
-  private path = '/api/v1/cars';
-  private controller = new CarController();
+  private readonly path = '/api/v1/cars';
+  private readonly controller = new CarController();
   public router: Router;
 
   constructor() {
@@ -15,7 +15,7 @@ export default class CarRoutes implements Routes {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     /**
      * @openapi
      * /api/v1/cars:

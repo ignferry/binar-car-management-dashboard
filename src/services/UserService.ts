@@ -6,8 +6,8 @@ import fs from 'fs';
 import { join } from 'path';
 
 export class UserService {
-  private UserRepository = new UserRepository();
-  private JWT_PRIVATE_KEY: Buffer;
+  private readonly UserRepository = new UserRepository();
+  private readonly JWT_PRIVATE_KEY: Buffer;
   constructor() {
     try {
       this.JWT_PRIVATE_KEY = fs.readFileSync(

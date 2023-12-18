@@ -1,4 +1,4 @@
-import { Model, ModelObject } from 'objection';
+import { Model, type ModelObject } from 'objection';
 
 export class UserModel extends Model {
   id!: string;
@@ -8,7 +8,7 @@ export class UserModel extends Model {
   created_at!: Date;
   updated_at!: Date;
 
-  static get tableName() {
+  static get tableName() { //eslint-disable-line
     return 'users';
   }
 }

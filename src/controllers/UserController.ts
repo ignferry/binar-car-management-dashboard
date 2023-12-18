@@ -1,5 +1,5 @@
 import ValidationException from '@exceptions/ValidationException';
-import { NextFunction, Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import { UserService } from 'services/UserService';
 
 interface IAuthBody {
@@ -8,13 +8,13 @@ interface IAuthBody {
 }
 
 export class UserController {
-  private userService = new UserService();
+  private readonly userService = new UserService();
 
   public register = async (
-    req: Request<{}, {}, IAuthBody>,
+    req: Request<unknown, unknown, IAuthBody>,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): Promise<void> => {
     try {
       if (!req.body.email || !req.body.password) {
         throw new ValidationException('Email and Password Required');
@@ -30,10 +30,10 @@ export class UserController {
   };
 
   public login = async (
-    req: Request<{}, {}, IAuthBody>,
+    req: Request<unknown, unknown, IAuthBody>,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): Promise<void> => {
     try {
       if (!req.body.email || !req.body.password) {
         throw new ValidationException('Email and Password Required');

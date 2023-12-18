@@ -1,23 +1,23 @@
-import { Car, CarModel } from '@models/CarModel';
+import { type Car, CarModel } from '@models/CarModel';
 
 export class CarRepository {
   public async getCars(
     limit: number,
     page: number,
-    minimum_capacity: number,
-    maximum_capacity: number,
-    minimum_available_date?: Date,
+    minimumCapacity: number,
+    maximumCapacity: number,
+    minimumAvailableDate?: Date,
   ): Promise<CarModel[]> {
     let query = CarModel.query()
       .select('*')
-      .whereBetween('capacity', [minimum_capacity, maximum_capacity])
+      .whereBetween('capacity', [minimumCapacity, maximumCapacity])
       .where({
         deleted_at: null,
       })
       .page(page, limit);
 
-    if (minimum_available_date) {
-      query = query.where('available_at', '<=', minimum_available_date);
+    if (minimumAvailableDate) {
+      query = query.where('available_at', '<=', minimumAvailableDate);
     }
 
     return (await query).results;
@@ -35,13 +35,13 @@ export class CarRepository {
 
   public async createCar(
     car: Partial<Car>,
-    user_id: string,
+    userId: string,
   ): Promise<CarModel> {
     return await CarModel.query()
       .insert({
         ...car,
         ...{
-          creator_id: user_id,
+          creator_id: userId,
         },
       })
       .returning('*');
@@ -50,13 +50,13 @@ export class CarRepository {
   public async updateCar(
     id: string,
     car: Partial<Car>,
-    user_id: string,
+    userId: string,
   ): Promise<CarModel> {
     return await CarModel.query()
       .patchAndFetchById(id, {
         ...car,
         ...{
-          last_updater_id: user_id,
+          last_updater_id: userId,
         },
       })
       .where({
@@ -66,9 +66,9 @@ export class CarRepository {
       .returning('*');
   }
 
-  public async deleteCar(id: string, user_id: string): Promise<CarModel> {
+  public async deleteCar(id: string, userId: string): Promise<CarModel> {
     return await CarModel.query()
-      .patchAndFetchById(id, { deleted_at: new Date(), deleter_id: user_id })
+      .patchAndFetchById(id, { deleted_at: new Date(), deleter_id: userId })
       .where({
         deleted_at: null,
       })

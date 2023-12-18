@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import { join } from 'path';
@@ -13,9 +13,9 @@ export const authenticateToken = (
   req: Request<any>,
   res: Response,
   next: NextFunction,
-) => {
-  const auth_header = req.headers.authorization;
-  const token = auth_header && auth_header.split(' ')[1];
+): void => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1];
 
   if (!token) {
     next(new NoTokenException());
