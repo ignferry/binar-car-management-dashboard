@@ -1,5 +1,5 @@
 export default class NoTokenException extends Error {
   constructor() {
-    super("No JWT Token Provided");
+    super('No JWT Token Provided');
   }
 }

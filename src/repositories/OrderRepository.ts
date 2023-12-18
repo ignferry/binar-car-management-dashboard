@@ -1,7 +1,7 @@
-import { OrderModel } from "@models/OrderModel";
+import { OrderModel } from '@models/OrderModel';
 
 export class OrderRepository {
-    public async getOrders(): Promise<OrderModel[]> {
-        return await OrderModel.query();
-    }
+  public async getOrders(): Promise<OrderModel[]> {
+    return await OrderModel.query();
+  }
 }
