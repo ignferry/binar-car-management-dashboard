@@ -7,6 +7,22 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
+    services:
+      database:
+        image: postgres:16.0-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bcr_management_dashboard
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+        volumes:
+          - ./src/database/scripts:/docker-entrypoint-initdb.d
     steps:
       - uses: actions/checkout@v3
       - name: Install
@@ -14,9 +30,7 @@ jobs:
       - name: Create .env file for testing
         run: |
           touch .env
-          echo DATABASE_URL=postgres://postgres:postgres@localhost:5433/bcr_management_dashboard >> .env
-      - name: Run database image for testing
-        run: docker-compose up database
+          echo DATABASE_URL=postgres://postgres:postgres@localhost:5432/bcr_management_dashboard >> .env
       - name: Migrate and seed database
         run: npm run migrate && npm run seed
       - name: Create .env file for deployment
