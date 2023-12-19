@@ -7,17 +7,37 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
+    services:
+      database:
+        image: postgres:16.0-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bcr_management_dashboard
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v3
       - name: Install
         run: npm ci
-      - name: Create .env file
+      - name: Create .env file for testing
         run: |
           touch .env
-          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo DATABASE_URL=postgres://postgres:postgres@localhost:5432/bcr_management_dashboard >> .env
       - name: Migrate and seed database
         run: npm run migrate && npm run seed
+      - name: Create .env file for deployment
+        run: |
+          rm .env
+          touch .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
+      - name: Deploy to fly.io
+        run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
