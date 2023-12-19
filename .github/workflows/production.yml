@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       database:
-        image: postgres:16.0-alpine
+        image: ignferry/bcr-database
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -21,8 +21,6 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-        volumes:
-          - ./src/database/scripts:/docker-entrypoint-initdb.d
     steps:
       - uses: actions/checkout@v3
       - name: Install

@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   database:
-    build:
-      context: ./
-      dockerfile: db.Dockerfile
+    image: ignferry/bcr-database
     container_name: db-postgres
     ports: 
       - "5433:5432"
