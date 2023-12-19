@@ -5,9 +5,12 @@ import ViewRoutes from 'routes/ViewRoutes';
 import AuthRoutes from 'routes/AuthRoutes';
 
 // Setup environment variables from file
-if (process.env.NODE_ENV !== 'production') {
-  (await import('dotenv')).config({ path: '.env' });
-}
+import('dotenv').then((lib) => {
+  lib.config({ path: '.env' });
+}).catch(() => {
+  console.log("Failed in reading .env file")
+});
+
 
 const app = new App([
   new CarRoutes(),
