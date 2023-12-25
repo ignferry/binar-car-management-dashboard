@@ -18,7 +18,7 @@ describe('Test Auth Registration Routes: /api/v1/auth/register', () => {
       const spy = vi.spyOn(logger, fn);
       spy.mockImplementation(() => {});
     }
-  })
+  });
 
   it('should return successful registration message on non conflicting credentials', async () => {
     const response = await supertest(app).post(route)
@@ -61,3 +61,59 @@ describe('Test Auth Registration Routes: /api/v1/auth/register', () => {
   });
 });
 
+describe('Test Auth Login Routes: /api/v1/auth/login', () => {
+  const mainApp = new App([
+    new AuthRoutes(),
+  ]);
+  const app = mainApp.app;
+  const route = '/api/v1/auth/login';
+
+  beforeAll(() => {
+    const loggingFunctions: Array<"info" | "warn" | "error"> = ['info', 'warn', 'error'];
+
+    for (const fn of loggingFunctions) {
+      const spy = vi.spyOn(logger, fn);
+      spy.mockImplementation(() => {});
+    }
+  });
+
+  it('should return token on correct credentials', async () => {
+    const response = await supertest(app).post(route)
+      .send({
+        email: 'admin@gmail.com',
+        password: 'password'
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject({
+      token: expect.any(String)
+    });
+  });
+
+  it('should fail with bad request on incomplete request body', async () => {
+    const response = await supertest(app).post(route)
+      .send({
+        password: 'password'
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toMatchObject({
+      success: false,
+      message: 'Bad Request'
+    });
+  });
+
+  it('should fail on wrong credentials', async () => {
+    const response = await supertest(app).post(route)
+      .send({
+        email: 'admin@gmail.com',
+        password: 'passwordx'
+      });
+
+    expect(response.status).toBe(401);
+    expect(response.body).toMatchObject({
+      success: false,
+      message: 'Wrong Authentication Credentials'
+    });
+  });
+});
