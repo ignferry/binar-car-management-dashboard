@@ -15,6 +15,7 @@ import NoFileReceivedException from '@exceptions/NoFileReceivedException';
 import WrongAuthCredentialsException from '@exceptions/WrongAuthCredentialsException';
 import NoTokenException from '@exceptions/NoTokenException';
 import InvalidTokenException from '@exceptions/InvalidTokenException';
+import ValidationException from '@exceptions/ValidationException';
 
 export const exceptionHandler = (
   err: Error,
@@ -28,7 +29,8 @@ export const exceptionHandler = (
       err instanceof DataError ||
       err instanceof CheckViolationError ||
       err instanceof NotNullViolationError ||
-      err instanceof NoFileReceivedException
+      err instanceof NoFileReceivedException ||
+      err instanceof ValidationException
     ) {
       /**
        * @openapi

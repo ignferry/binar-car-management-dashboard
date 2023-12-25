@@ -9,13 +9,18 @@ import { join } from 'path';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from '@utils/GenerateDocs';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import knexConfig from '@database/knexfile'
 
 export class App {
-  private readonly app: express.Application;
+  public readonly app: express.Application;
   private readonly knexInstance: Knex;
   private readonly port: number;
 
   constructor(routes: Routes[]) {
+    // Setup environment variables from file
+    dotenv.config({ path: join(__dirname, '..', '.env') });
+
     this.port = parseInt(!process.env.SERVER_POR as unknown as string, 10) || 3000;
     this.app = express();
 
@@ -47,16 +52,7 @@ export class App {
     this.app.use(reqEndLogger);
 
     // Setup knex
-    this.knexInstance = knex({
-      client: 'postgresql',
-      connection: {
-        connectionString: process.env.DATABASE_URL,
-      },
-      pool: {
-        min: 2,
-        max: 10,
-      },
-    });
+    this.knexInstance = knex(knexConfig.development);
 
     Model.knex(this.knexInstance);
   }

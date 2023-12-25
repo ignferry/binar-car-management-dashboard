@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { OrderService } from 'services/OrderService';
+import { OrderService } from '@services/OrderService';
 
 export class OrderController {
   private readonly carService = new OrderService();

@@ -1,6 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/return-await
   return knex.schema.createTable('users', (table: Knex.TableBuilder) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('email', 320).notNullable().unique();
@@ -11,5 +12,6 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/return-await
   return knex.schema.dropTable('users');
 }

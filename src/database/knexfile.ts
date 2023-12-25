@@ -1,56 +1,31 @@
 import type { Knex } from 'knex';
 import dotenv from 'dotenv';
+import { join } from 'path';
 
-dotenv.config({ path: '../../.env' });
+dotenv.config({ path: join(__dirname, '..', '..', '.env') });
 
-// Update with your config settings.
-
-const config: { [key: string]: Knex.Config } = {
-  development: {
-    client: 'postgresql',
-    connection: {
-      connectionString: process.env.DATABASE_URL
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-    },
+const defaultConfig: Knex.Config = {
+  client: 'postgresql',
+  connection: {
+    connectionString: process.env.DATABASE_URL
   },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-    },
+  pool: {
+    min: 2,
+    max: 10,
   },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-    },
+  migrations: {
+    tableName: 'knex_migrations',
+    directory: join(__dirname, 'migrations'),
   },
+  seeds: {
+    directory: join(__dirname, 'seeds')
+  }
 };
 
-module.exports = config;
+const config: Record<string, Knex.Config> = {
+  development: defaultConfig,
+  staging: defaultConfig,
+  production: defaultConfig
+};
+
+export default config;

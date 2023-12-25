@@ -1,22 +1,18 @@
-import CarRoutes from 'routes/CarRoutes';
+import 'module-alias/register'
+import CarRoutes from '@routes/CarRoutes';
 import { App } from './App';
-import OrderRoutes from 'routes/OrderRoutes';
-import ViewRoutes from 'routes/ViewRoutes';
-import AuthRoutes from 'routes/AuthRoutes';
+import OrderRoutes from '@routes/OrderRoutes';
+import ViewRoutes from '@routes/ViewRoutes';
+import AuthRoutes from '@routes/AuthRoutes';
+import { type Routes } from '@routes/Routes';
 
-// Setup environment variables from file
-import('dotenv').then((lib) => {
-  lib.config({ path: '.env' });
-}).catch(() => {
-  console.log("Failed in reading .env file")
-});
-
-
-const app = new App([
+const routes: Routes[] = [
   new CarRoutes(),
   new OrderRoutes(),
   new ViewRoutes(),
   new AuthRoutes(),
-]);
+];
+
+const app = new App(routes);
 
 app.listen();

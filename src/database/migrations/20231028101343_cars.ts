@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
-import { transaction } from 'objection';
+import type { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/return-await
   return knex.schema.createTable('cars', (table: Knex.TableBuilder) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('image', 64).notNullable();
@@ -21,7 +21,7 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('year').notNullable();
     table.specificType('options', 'VARCHAR(256)[]');
     table.specificType('specs', 'VARCHAR(256)[]');
-    table.uuid('creator_id').notNullable();
+    table.uuid('creator_id');
     table.foreign('creator_id').references('users.id').onDelete('SET NULL');
     table.uuid('last_updater_id');
     table
@@ -36,5 +36,6 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/return-await
   return knex.schema.dropTable('cars');
 }

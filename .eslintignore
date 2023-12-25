@@ -1,5 +1,4 @@
 /public
 /src/views
-/src/database/seeds
-/src/database/migrations
-/src/database/knexfile.ts
+/dist
+vite.config.ts
