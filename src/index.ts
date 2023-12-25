@@ -1,4 +1,3 @@
-import 'module-alias/register'
 import CarRoutes from '@routes/CarRoutes';
 import { App } from './App';
 import OrderRoutes from '@routes/OrderRoutes';
