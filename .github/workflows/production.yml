@@ -23,19 +23,14 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v3
-      - name: Install
+      - name: Install dependencies
         run: npm ci
       - name: Create .env file for testing
         run: |
           touch .env
           echo DATABASE_URL=postgres://postgres:postgres@localhost:5432/bcr_management_dashboard >> .env
-      - name: Migrate and seed database
-        run: npm run migrate && npm run seed
-      - name: Create .env file for deployment
-        run: |
-          rm .env
-          touch .env
-          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+      - name: Run tests
+        run: npm run test
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy to fly.io
         run: flyctl deploy --remote-only
