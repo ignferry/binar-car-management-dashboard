@@ -1,6 +1,7 @@
 import multer from 'multer';
 import { join, extname } from 'path';
 import { randomUUID } from 'crypto';
+import NoFileReceivedException from '@exceptions/NoFileReceivedException';
 
 export const carImageUpload = multer({
   storage: multer.diskStorage({
@@ -14,8 +15,8 @@ export const carImageUpload = multer({
   fileFilter: (req, file, cb) => {
     const ext = extname(file.originalname);
     if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
-      cb(new Error('Only images are allowed!'));
-      return
+      cb(new NoFileReceivedException());
+      return;
     }
     cb(null, true);
   },

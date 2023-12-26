@@ -1,7 +1,6 @@
 import type { Car } from '@models/CarModel';
 import { CarService } from '@services/CarService';
 import type { NextFunction, Request, Response } from 'express';
-import { join } from 'path';
 import NoFileReceivedException from '@exceptions/NoFileReceivedException';
 
 interface IParams {
@@ -80,24 +79,6 @@ export class CarController {
     try {
       const car = await this.carService.getCarById(req.params.id);
       res.status(200).json(car);
-      next();
-    } catch (e) {
-      next(e);
-    }
-  };
-
-  public getCarImageById = async (
-    req: Request<IParams>,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
-    try {
-      const car = await this.carService.getCarById(req.params.id);
-      res
-        .status(200)
-        .sendFile(
-          join(__dirname, '..', '..', 'storage', 'cars', `${car.id}.jpg`),
-        );
       next();
     } catch (e) {
       next(e);

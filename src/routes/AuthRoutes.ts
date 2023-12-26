@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import type { Routes } from './Routes';
 import { UserController } from '@controllers/UserController';
+import { body } from 'express-validator';
+import { handleValidation } from '@middlewares/ExpressValidationMiddleware';
 
 export default class AuthRoutes implements Routes {
   private readonly path = '/api/v1/auth';
@@ -14,6 +16,12 @@ export default class AuthRoutes implements Routes {
   }
 
   private initializeRoutes(): void {
+    const validateAuthBody = [
+      body('email').isEmail(),
+      body('password').isLength({ min: 8 }),
+      handleValidation,
+    ];
+
     /**
      * @openapi
      * /api/v1/auth/register:
@@ -63,7 +71,11 @@ export default class AuthRoutes implements Routes {
      *                          type: object
      *                          $ref: '#/components/schemas/ConstraintViolationError'
      */
-    this.router.post(`${this.path}/register`, this.controller.register);
+    this.router.post(
+      `${this.path}/register`,
+      validateAuthBody,
+      this.controller.register,
+    );
 
     /**
      * @openapi
@@ -113,7 +125,11 @@ export default class AuthRoutes implements Routes {
      *                          type: object
      *                          $ref: '#/components/schemas/WrongAuthCredentialsError'
      */
-    this.router.post(`${this.path}/login`, this.controller.login);
+    this.router.post(
+      `${this.path}/login`,
+      validateAuthBody,
+      this.controller.login,
+    );
 
     /**
      * @openapi

@@ -11,7 +11,8 @@ export class OrderModel extends Model {
   created_at!: Date;
   updated_at!: Date;
 
-  static get tableName() { //eslint-disable-line
+  static get tableName() {
+    //eslint-disable-line
     return 'orders';
   }
 }

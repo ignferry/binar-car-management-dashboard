@@ -24,10 +24,7 @@ export class CarService {
     return await this.carRepository.getCarById(id);
   }
 
-  public async createCar(
-    car: Partial<Car>,
-    userId: string,
-  ): Promise<CarModel> {
+  public async createCar(car: Partial<Car>, userId: string): Promise<CarModel> {
     return await this.carRepository.createCar(car, userId);
   }
 

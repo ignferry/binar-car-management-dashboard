@@ -33,15 +33,13 @@ export class CarRepository {
       .throwIfNotFound();
   }
 
-  public async createCar(
-    car: Partial<Car>,
-    userId: string,
-  ): Promise<CarModel> {
+  public async createCar(car: Partial<Car>, userId: string): Promise<CarModel> {
     return await CarModel.query()
       .insert({
         ...car,
         ...{
           creator_id: userId,
+          last_updater_id: userId,
         },
       })
       .returning('*');

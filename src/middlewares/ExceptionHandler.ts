@@ -1,21 +1,17 @@
 import logger from '@utils/logger';
 import type { NextFunction, Request, Response } from 'express';
 import {
-  CheckViolationError,
   DBError,
-  DataError,
   ForeignKeyViolationError,
   NotFoundError,
-  NotNullViolationError,
   UniqueViolationError,
-  ValidationError,
 } from 'objection';
 import { DatabaseError } from 'pg';
 import NoFileReceivedException from '@exceptions/NoFileReceivedException';
 import WrongAuthCredentialsException from '@exceptions/WrongAuthCredentialsException';
 import NoTokenException from '@exceptions/NoTokenException';
 import InvalidTokenException from '@exceptions/InvalidTokenException';
-import ValidationException from '@exceptions/ValidationException';
+import ExpressValidationException from '@exceptions/ExpressValidationException';
 
 export const exceptionHandler = (
   err: Error,
@@ -25,12 +21,8 @@ export const exceptionHandler = (
 ): void => {
   if (err) {
     if (
-      err instanceof ValidationError ||
-      err instanceof DataError ||
-      err instanceof CheckViolationError ||
-      err instanceof NotNullViolationError ||
-      err instanceof NoFileReceivedException ||
-      err instanceof ValidationException
+      err instanceof ExpressValidationException ||
+      err instanceof NoFileReceivedException
     ) {
       /**
        * @openapi
@@ -154,6 +146,7 @@ export const exceptionHandler = (
       });
     } else {
       logger.error(err, `${req.method} ${req.url} : System Error`);
+      console.log(err)
       res.status(500).json({
         success: false,
         message: 'System Error',

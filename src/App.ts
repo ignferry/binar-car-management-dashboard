@@ -10,7 +10,7 @@ import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from '@utils/GenerateDocs';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import knexConfig from '@database/knexfile'
+import knexConfig from '@database/knexfile';
 
 export class App {
   public readonly app: express.Application;
@@ -21,7 +21,8 @@ export class App {
     // Setup environment variables from file
     dotenv.config({ path: join(__dirname, '..', '.env') });
 
-    this.port = parseInt(!process.env.SERVER_POR as unknown as string, 10) || 3000;
+    this.port =
+      parseInt(!process.env.SERVER_POR as unknown as string, 10) || 3000;
     this.app = express();
 
     this.app.use(express.json());

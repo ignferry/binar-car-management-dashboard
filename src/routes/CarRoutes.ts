@@ -3,6 +3,8 @@ import { Router } from 'express';
 import type { Routes } from './Routes';
 import { carImageUpload } from '@middlewares/ImageUploadMiddleware';
 import { authenticateToken } from '@middlewares/AuthMiddleware';
+import { body } from 'express-validator';
+import { handleValidation } from '@middlewares/ExpressValidationMiddleware';
 
 export default class CarRoutes implements Routes {
   private readonly path = '/api/v1/cars';
@@ -16,6 +18,30 @@ export default class CarRoutes implements Routes {
   }
 
   private initializeRoutes(): void {
+    const allowedAttributes = [
+      'plate',
+      'manufacture',
+      'model',
+      'image',
+      'rent_per_day',
+      'capacity',
+      'description',
+      'available_at',
+      'transmission',
+      'available',
+      'type',
+      'year',
+      'options',
+      'specs',
+    ];
+    const validateCarBody = body('*').custom((value, { req }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      const keys = Object.keys(req.body);
+      const invalidKeys = keys.filter(
+        (key) => !allowedAttributes.includes(key),
+      );
+      return invalidKeys.length === 0;
+    });
     /**
      * @openapi
      * /api/v1/cars:
@@ -161,9 +187,26 @@ export default class CarRoutes implements Routes {
      *                          $ref: '#/components/schemas/ConstraintViolationError'
      *
      */
+    const validateCreateCarBody = [
+      validateCarBody,
+      body('plate').isString(),
+      body('manufacture').isString(),
+      body('image').isString(),
+      body('rent_per_day').isInt(),
+      body('capacity').isInt(),
+      body('description').isString(),
+      body('available_at').isString(),
+      body('type').isString(),
+      body('year').isInt(),
+      body('options.*').isString(),
+      body('specs.*').isString(),
+      handleValidation,
+    ];
+
     this.router.post(
       `${this.path}`,
       authenticateToken,
+      validateCreateCarBody,
       this.controller.createCar,
     );
 
@@ -294,9 +337,26 @@ export default class CarRoutes implements Routes {
      *                          type: object
      *                          $ref: '#/components/schemas/ConstraintViolationError'
      */
+    const validateUpdateCarBody = [
+      validateCarBody,
+      body('plate').isString().optional(),
+      body('manufacture').isString().optional(),
+      body('image').isString().optional(),
+      body('rent_per_day').isInt().optional(),
+      body('capacity').isInt().optional(),
+      body('description').isString().optional(),
+      body('available_at').isString().optional(),
+      body('type').isString().optional(),
+      body('year').isInt().optional(),
+      body('options.*').isString().optional(),
+      body('specs.*').isString().optional(),
+      handleValidation,
+    ];
+
     this.router.put(
       `${this.path}/:id`,
       authenticateToken,
+      validateUpdateCarBody,
       this.controller.updateCar,
     );
 

@@ -1,4 +1,3 @@
-import ValidationException from '@exceptions/ValidationException';
 import type { NextFunction, Request, Response } from 'express';
 import { UserService } from '@services/UserService';
 
@@ -16,10 +15,6 @@ export class UserController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      if (!req.body.email || !req.body.password) {
-        throw new ValidationException('Email and Password Required');
-      }
-
       await this.userService.register(req.body.email, req.body.password);
       res.status(200).json({
         message: 'Registration successful',
@@ -35,9 +30,6 @@ export class UserController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      if (!req.body.email || !req.body.password) {
-        throw new ValidationException('Email and Password Required');
-      }
       res.status(200).json({
         token: await this.userService.login(req.body.email, req.body.password),
       });

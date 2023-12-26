@@ -23,7 +23,8 @@ export class CarModel extends Model {
   updated_at!: Date;
   deleted_at!: Date;
 
-  static get tableName() { //eslint-disable-line
+  static get tableName() {
+    //eslint-disable-line
     return 'cars';
   }
 }
