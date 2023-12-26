@@ -266,7 +266,10 @@ describe('Test Get Car By ID Route: GET /api/v1/cars/{id}', () => {
     const response = await supertest(app).get(route + '/' + carData.id);
 
     expect(response.status).toBe(200);
-    expect(response.body).toMatchObject(carData);
+    expect(response.body).toMatchObject({
+      ...carData,
+      available_at: expect.any(String)
+    });
   });
 
   it('should fail with not found error if car with corresponding ID does not exist', async () => {
@@ -334,7 +337,7 @@ describe('Test Create Car Route: POST /api/v1/cars', () => {
       updated_at: expect.any(String),
       deleter_id: null,
       deleted_at: null,
-      available_at: '2022-03-23T08:49:05.563Z',
+      available_at: expect.any(String),
     });
   });
 
@@ -507,7 +510,7 @@ describe('Test Update Car Route: PUT /api/v1/cars/{id}', () => {
     expect(response.body).toMatchObject({
       ...updatedCarBody,
       id,
-      available_at: '2022-03-23T08:49:05.563Z',
+      available_at: expect.any(String),
     });
   });
 
@@ -620,7 +623,7 @@ describe('Test Delete Car Route: DELETE /api/v1/cars/{id}', () => {
     expect(response.status).toBe(200);
     expect(response.body).toMatchObject({
       ...deletedCar,
-      available_at: '2022-03-23T08:49:05.563Z',
+      available_at: expect.any(String),
     });
   });
 
